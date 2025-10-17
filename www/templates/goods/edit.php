@@ -9,10 +9,9 @@
 </head>
 <body>
 <h1>Редактирование категории</h1>
-<form action="/categories/edit/<?=$categorySelected['id']?>" method="post">
-    <input type="text" name="name" placeholder="Наименование категории" value="<?=$categorySelected['name']?>" required>
-    <select name="parent" id="parent">
-        <option value="">Выбрать родительскую категорию</option>
+<form action="/goods/edit/<?=$good['id']?>" method="post">
+    <input type="text" name="name" placeholder="Наименование категории" value="<?=$good['name']?>" required>
+    <select name="category" id="category">
         <?php foreach ($categories as $category) :?>
             <option value="<?=$category['id']?>"><?=$category['name']?></option>
         <?php endforeach;?>
