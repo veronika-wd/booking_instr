@@ -1,15 +1,16 @@
 <?php
 
-namespace Src\Controllers;
+namespace Src\Controllers\AdminControllers;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Src\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
     public function index(RequestInterface $request, ResponseInterface $response, $args)
     {
-        return $this->renderer->render($response, 'categories/index.php', [
+        return $this->renderer->render($response, 'admin/categories/index.php', [
             'categories' => \ORM::for_table('categories')
                 ->select('categories.id')
                 ->select('categories.name')
@@ -23,7 +24,7 @@ class CategoriesController extends Controller
 
     public function create(RequestInterface $request, ResponseInterface $response,$args)
     {
-        return $this->renderer->render($response, 'categories/create.php', [
+        return $this->renderer->render($response, 'admin/categories/create.php', [
             'categories' => \ORM::for_table('categories')
                 ->select('categories.id')
                 ->select('categories.name')
@@ -46,7 +47,7 @@ class CategoriesController extends Controller
 
     public function edit(RequestInterface $request, ResponseInterface $response, array $args)
     {
-        return $this->renderer->render($response, 'categories/edit.php', [
+        return $this->renderer->render($response, 'admin/categories/edit.php', [
             'categorySelected' => \ORM::for_table('categories')->find_one($args['id']),
             'categories' => \ORM::for_table('categories')
                 ->select('categories.id')

@@ -10,7 +10,12 @@ class Controller
         protected PhpRenderer $renderer
     )
     {
+        $this->setLayout();
+    }
 
+    protected function setLayout() : void
+    {
+        $this->renderer->setLayout('layout.php');
     }
 
 }

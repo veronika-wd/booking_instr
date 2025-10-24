@@ -26,7 +26,7 @@ main{
     flex-direction: column;
     gap: 7px;
     padding: 5px 10px;
-    height: 90vh;
+    height: 100vh;
 }
 
 a{
@@ -41,7 +41,7 @@ a{
 }
 
 .category-cont{
-    background-color: pink;
+    background-color: #ffffff;
     padding: 5px 10px;
 }
 
@@ -50,7 +50,15 @@ button{
     padding: 5px 10px;
     margin: 10px 0;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: all .3s ease-in-out;
 }
+
+button:hover{
+    background-color: #ada4a4;
+}
+
 
 .card-container{
     display: grid;
@@ -60,10 +68,11 @@ button{
     margin: 20px 0;
     align-content: start;
     justify-items: start;
+    background-color: #fff;
 }
 
 .card{
-    background-color: #f1aaaa;
+    background-color: #f3c7c7;
     display: flex;
     flex-direction: column;
     width: 300px;

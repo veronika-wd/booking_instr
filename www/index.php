@@ -3,8 +3,9 @@
 use DI\Container;
 use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
-use Src\Controllers\CategoriesController;
-use Src\Controllers\GoodsController;
+use Src\Controllers\AdminControllers\CategoriesController;
+use Src\Controllers\AdminControllers\GoodsController;
+use Src\Controllers\HomeController;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -13,18 +14,26 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 
 $container->set(PhpRenderer::class, function () {
-    return new PhpRenderer(__DIR__ . '/templates');
+    return new PhpRenderer(__DIR__ . '/templates', [
+        'categories' => ORM::for_table('categories')
+            ->whereNull('parent_category')
+            ->findArray(),
+    ]);
 });
 
 ORM::configure('mysql:host=database;dbname=docker');
 ORM::configure('username', 'docker');
 ORM::configure('password', 'docker');
 
-$app->get('/', [GoodsController::class, 'index']);
-$app->get('/categories', [CategoriesController::class, 'index']);
+$app->get('/', [HomeController::class, 'index']);
+$app->get('/catalog', [HomeController::class, 'catalog']);
+$app->get('/show/{id}', [HomeController::class, 'show']);
 
 
 //CRUD категорий
+
+$app->get('/categories', [CategoriesController::class, 'index']);
+
 $app->get('/categories/create', [CategoriesController::class, 'create']);
 $app->post('/categories/create', [CategoriesController::class, 'store']);
 
@@ -46,6 +55,6 @@ $app->get('/goods/delete/{id}', [GoodsController::class, 'delete']);
 
 
 
-$app->get('/{category_id}',  [GoodsController::class, 'index']);
+$app->get('/{category_id}',  [HomeController::class, 'index']);
 
 $app->run();

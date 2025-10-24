@@ -1,22 +1,7 @@
-
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/styles.css">
-    <title>Document</title>
-</head>
-<body>
-<header>
-    <h1>Главная</h1>
-</header>
 <main>
     <div class="sidebar">
         <a href="/"><h2>Категории</h2></a>
+        <a href="/catalog"><button>Каталог</button></a>
         <?php foreach ($categories as $category) :?>
             <a href="/<?=$category['id']?>"><?=$category['name']?></a>
         <?php endforeach;?>
@@ -32,16 +17,16 @@
             <?php endforeach;?>
             <?php endif;?>
         </div>
+        <h2>Список товаров</h2>
 
         <div class="card-container">
             <?php foreach ($goods as $good) :?>
                 <div class="card">
                     <h3><?=$good['name']?></h3>
                     <p><?= $good['category_name']?></p>
+                    <a href="/show/<?=$good['id']?>">Подробнее</a>
                 </div>
             <?php endforeach;?>
         </div>
     </div>
 </main>
-</body>
-</html>
