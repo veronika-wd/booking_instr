@@ -1,8 +1,8 @@
 <main>
     <div class="sidebar">
         <a href="/"><h2>Категории</h2></a>
-        <?php foreach ($categories as $category) :?>
-            <a href="/<?=$category['id']?>"><?=$category['name']?></a>
+        <?php foreach ($parentCategories as $parentCategory) :?>
+            <a href="/<?=$parentCategory['id']?>"><?=$parentCategory['name']?></a>
         <?php endforeach;?>
         <a href="/categories"><button>Перейти к админ-панели</button></a>
     </div>

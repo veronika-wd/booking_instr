@@ -38,6 +38,7 @@ class GoodsController extends Controller
             'name' => $request->getParsedBody()['name'],
             'category_id' => $request->getParsedBody()['category'] ,
             'description' => $request->getParsedBody()['description'],
+            'slug' => $this->slugify($request->getParsedBody()['name']),
         ])->save();
 
         return $response->withHeader('Location', '/goods')->withStatus(302);
@@ -63,6 +64,7 @@ class GoodsController extends Controller
             'name' => $request->getParsedBody()['name'],
             'category_id' => $request->getParsedBody()['category'],
             'description' => $request->getParsedBody()['description'],
+            'slug' => $this->slugify($request->getParsedBody()['name']),
         ])->save();
         return $response->withHeader('Location', '/goods')->withStatus(302);
     }

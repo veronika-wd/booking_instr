@@ -40,6 +40,7 @@ class CategoriesController extends Controller
         \ORM::for_table('categories')->create([
             'name' => $request->getParsedBody()['name'],
             'parent_category' => !$request->getParsedBody()['parent'] ? null : $request->getParsedBody()['parent'],
+            'slug' => $this->slugify($request->getParsedBody()['name']),
         ])->save();
 
         return $response->withHeader('Location', '/categories')->withStatus(302);
@@ -64,6 +65,7 @@ class CategoriesController extends Controller
         \ORM::forTable('categories')->where('id', $args['id'])->findOne()->set([
             'name' => $request->getParsedBody()['name'],
             'parent_category' => !$request->getParsedBody()['parent'] ? null : $request->getParsedBody()['parent'],
+            'slug' => $this->slugify($request->getParsedBody()['name']),
         ])->save();
         return $response->withHeader('Location', '/categories')->withStatus(302);
     }

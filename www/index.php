@@ -27,7 +27,7 @@ ORM::configure('password', 'docker');
 
 $app->get('/', [HomeController::class, 'index']);
 $app->get('/catalog', [HomeController::class, 'catalog']);
-$app->get('/show/{id}', [HomeController::class, 'show']);
+$app->get('/show/{slug}', [HomeController::class, 'show']);
 
 
 //CRUD категорий
@@ -55,6 +55,6 @@ $app->get('/goods/delete/{id}', [GoodsController::class, 'delete']);
 
 
 
-$app->get('/{category_id}',  [HomeController::class, 'index']);
+$app->get('/{slug}',  [HomeController::class, 'index']);
 
 $app->run();
